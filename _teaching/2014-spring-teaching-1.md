@@ -2,9 +2,9 @@
 title: "Deep Generative Models"
 collection: teaching
 type: "graduate course"
-permalink: /teaching/2014-spring-teaching-1
+# permalink: /teaching/2014-spring-teaching-1
 venue: "University of Tehran, Department of Electronic and Computer Engineering"
-date: #2014-01-01
+date: 2014-01-01
 location: "Tehran, Iran"
 ---
 
