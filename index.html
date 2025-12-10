@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javad Kavian</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for better aesthetics */
+        /* Body styles are set up for Dark Mode toggle to work via the 'dark' class on the HTML tag */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Default Light Mode */
+            background-color: #f8fafc; /* Light off-white */
+            color: #1f2937; /* Dark text */
+            min-height: 100vh;
+            /* Transition for smooth color change */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Style for the active tab underline */
+        .tab-active {
+            position: relative;
+            color: #3b82f6; /* Blue accent for active tab (light mode) */
+        }
+        /* Dark mode active color adjustment */
+        html.dark .tab-active {
+            color: #60a5fa; /* Lighter blue in dark mode */
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #3b82f6;
+            border-radius: 9999px;
+        }
+        .content-section {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, max-height 0.7s ease-in-out;
+        }
+        .content-active {
+            opacity: 1;
+            max-height: 5000px; /* Large enough value to show content */
+            overflow: visible;
+        }
+    </style>
+</head>
+<body class="antialiased dark:bg-gray-900 dark:text-gray-100">
+
+    <!-- Header and Navigation Bar -->
+    <header class="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Site Title/Name -->
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                        Javad Kavian
+                    </span>
+                </div>
+
+                <!-- Navigation Tabs and Dark Mode Toggle -->
+                <div class="flex items-center space-x-6">
+                    <!-- Navigation Tabs -->
+                    <nav class="flex space-x-4">
+                        <a href="#home" id="nav-home" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="home-section">Home</a>
+                        <a href="#teaching" id="nav-teaching" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="teaching-section">Teaching</a>
+                        <a href="#research" id="nav-research" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="research-section">Research</a>
+                        <a href="#projects" id="nav-projects" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="projects-section">Projects</a>
+                        <a href="#contact" id="nav-contact" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="contact-section">Contact</a>
+                    </nav>
+
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="darkModeToggle" aria-label="Toggle Dark Mode" class="p-2 rounded-full text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <!-- Sun Icon (Visible in dark mode) -->
+                        <svg id="sunIcon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <!-- Moon Icon (Visible in light mode) -->
+                        <svg id="moonIcon" class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- HOME SECTION (Initially Active) -->
+        <section id="home-section" class="content-section content-active">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
+                <div class="md:flex items-center gap-8">
+                    <!-- Picture Placeholder & CV Download Button -->
+                    <div class="flex-shrink-0 mb-6 md:mb-0">
+                        <img src="./images/javad.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/180x180/4f46e5/ffffff?text=Your+Picture';"
+                             alt="Profile Picture Placeholder"
+                             class="w-44 h-44 rounded-full object-cover border-4 border-indigo-400 shadow-xl mx-auto md:mx-0">
+                        
+                        <!-- CV Download Link -->
+                        <a href="./assets/CV.pdf" class="mt-4 block text-center bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow-lg">
+                            Download CV (PDF)
+                        </a>
+                        <!-- NOTE TO USER: Replace "#cv-download" above with the actual link to your CV file (e.g., "assets/jane_doe_cv.pdf") -->
+                    </div>
+                    <!-- Intro Text -->
+                    <div>
+                        <h1 class="text-5xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">Javad Kavian</h1>
+                        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4">Computer Engineering Student</h2>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Welcome to my personal webpage. I am an undergraduate Computer Engineering student at the University of Tehran, with broad research interests in AI/ML, particularly in Computer Vision. I also work as a researcher at the RIML Lab at Sharif University of Technology.
+                        </p>
+                        <!-- <div class="mt-4 flex space-x-4">
+                            <a href="#research" class="text-indigo-600 dark:text-indigo-300 hover:text-indigo-500 dark:hover:text-indigo-200 transition">Latest Publication</a>
+                            <a href="#projects" class="text-indigo-600 dark:text-indigo-300 hover:text-indigo-500 dark:hover:text-indigo-200 transition">Current Project</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEACHING SECTION -->
+        <section id="teaching-section" class="content-section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
+                <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">My Experience as Teaching Assistant</h2>
+                <p class="mb-6 text-gray-600 dark:text-gray-300">
+                    During my undergradute studies, I served as a teaching assistant for several undergraduate and graduate-level courses.
+                </p>
+                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-3">Courses</h3>
+                <ul class="space-y-4 list-disc list-inside text-gray-600 dark:text-gray-300">
+                    <li class="pl-2">
+                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Deep Generative Models</span> - Description
+                    </li>
+                    <li class="pl-2">
+                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Machine Learning</span> - Description
+                    </li>
+                    <li class="pl-2">
+                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Artificial Intelligence</span> - Description
+                    </li>
+                    <li class="pl-2">
+                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Data Science</span> - Description
+                    </li>
+                    <li class="pl-2">
+                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Programming Languages and Compiler</span> - Description
+                    </li>
+                    <li class="pl-2">
+                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Introduction to Computing Systems and Programming</span> - Description
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- RESEARCH SECTION -->
+        <section id="research-section" class="content-section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
+                <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Research Interests & Publications</h2>
+                <p class="mb-6 text-gray-600 dark:text-gray-300">
+                    My current research focuses on scene understanding. I am particularly looking for methods which can entirely understand intricate compositional patterns within an image.
+                </p>
+                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-3">Selected Publications</h3>
+                I currently have no published papers in peer-reviewed journals or conferences, but one of my works is under review at ICLR 2026.
+                <!-- <div class="space-y-4">
+                    <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                        <p class="font-medium text-indigo-600 dark:text-indigo-300">Graph-Based Neural Networks for Protein Interaction Prediction</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Journal of Bioinformatics, 2024. Vol. 15, No. 2, pp. 112-125.</p>
+                        <a href="#" class="text-xs text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100">DOI Link</a>
+                    </div>
+                    <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                        <p class="font-medium text-indigo-600 dark:text-indigo-300">Scalable Clustering of Large Transcriptome Datasets via Manifold Learning</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Nature Methods, 2023. Vol. 20, Issue 10, pp. 1450-1460.</p>
+                        <a href="#" class="text-xs text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100">DOI Link</a>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects-section" class="content-section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
+                <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Projects</h2>
+                <p class="mb-6 text-gray-600 dark:text-gray-300">
+                    During my academic journey, I did several projects which you can find them on <a href="https://github.com/javadkavian/" class="inline-flex items-center text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100 transition">
+                            my github page &rarr;</a>
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Project 1 -->
+                    <div class="p-5 bg-gray-100 dark:bg-gray-700 rounded-lg border border-indigo-500 dark:border-indigo-600">
+                        <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2">Deep Generative Models</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-3">Implementation of several generative models in PyTorch</p>
+                        <a href="https://github.com/javadkavian/Deep-Generative-Models" class="inline-flex items-center text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100 transition">
+                            View on GitHub &rarr;
+                        </a>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="p-5 bg-gray-100 dark:bg-gray-700 rounded-lg border border-indigo-500 dark:border-indigo-600">
+                        <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2">Transformer from Scratch</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-3">A PyTorch implementation of transformer architecture, trained for translation task from english to persian</p>
+                        <a href="https://github.com/javadkavian/English2Persian-translation" class="inline-flex items-center text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100 transition">
+                            View on GitHub &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+<section id="contact-section" class="content-section">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
+        <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Get in Touch</h2>
+        <p class="mb-6 text-gray-600 dark:text-gray-300">
+            I am open to collaboration in research projects in the area of computer vision.
+        </p>
+        <div class="space-y-4">
+            <!-- Email -->
+            <p class="flex items-center text-gray-600 dark:text-gray-300">
+                <svg class="w-6 h-6 mr-3 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Email: <a href="mailto:javadkavian8@gmail.com" class="ml-2 font-medium hover:text-blue-500 dark:hover:text-blue-400">javadkavian8@gmail.com</a>
+            </p>
+
+            <!-- LinkedIn -->
+            <p class="flex items-center text-gray-600 dark:text-gray-300">
+                <svg class="w-6 h-6 mr-3 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                LinkedIn: <a href="https://linkedin.com/in/javad-kavian-755865294" class="ml-2 font-medium hover:text-blue-500 dark:hover:text-blue-400">/in/javadkavian</a>
+            </p>
+
+            <!-- GitHub -->
+            <p class="flex items-center text-gray-600 dark:text-gray-300">
+                <svg class="w-6 h-6 mr-3 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48v-1.7c-2.78.61-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.63.07-.62.07-.62 1.02.07 1.56 1.06 1.56 1.06.9 1.55 2.36 1.1 2.94.84.09-.66.35-1.1.63-1.36-2.22-.25-4.56-1.11-4.56-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8a9.6 9.6 0 012.5.34c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.02 1.59 1.02 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.76c0 .26.16.58.67.48A10 10 0 0022 12c0-5.52-4.48-10-10-10z"/>
+                </svg>
+                GitHub: <a href="https://github.com/javadkavian" class="ml-2 font-medium hover:text-blue-500 dark:hover:text-blue-400">github.com/javadkavian</a>
+            </p>
+
+            <!-- Telegram -->
+            <p class="flex items-center text-gray-600 dark:text-gray-300">
+                <svg class="w-6 h-6 mr-3 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21.5 2.5L2.5 10.5c-.9.4-.9 1.6 0 2l4.8 1.7 2 6.3c.3.9 1.5 1.1 2.1.3l3-3 4.7 3.4c.8.6 2 .1 2.2-.9l3-14c.2-1-0.8-1.8-1.8-1.4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                Telegram: <a href="https://t.me/javadkavian" class="ml-2 font-medium hover:text-blue-500 dark:hover:text-blue-400">@javadkavian</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-gray-500 text-sm mt-10">
+        &copy; <span id="current-year"></span> Javad Kavian All rights reserved. Built for GitHub Pages.
+    </footer>
+
+    <script>
+        // DARK MODE LOGIC
+        const htmlElement = document.documentElement;
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // 1. Initial Load: Check localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        }
+
+        // 2. Toggle Handler
+        const toggleDarkMode = () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        };
+
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        }
+        
+        // PAGE NAVIGATION LOGIC (Kept from previous version)
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const currentYear = new Date().getFullYear();
+            document.getElementById('current-year').textContent = currentYear;
+
+            // Function to handle showing the correct section
+            const showSection = (targetId) => {
+                // Hide all sections
+                contentSections.forEach(section => {
+                    section.classList.remove('content-active');
+                });
+                // Remove active class from all links
+                navLinks.forEach(link => {
+                    link.classList.remove('tab-active');
+                });
+
+                // Show the target section and set active link
+                const targetSection = document.getElementById(targetId);
+                const targetLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+
+                if (targetSection && targetLink) {
+                    targetSection.classList.add('content-active');
+                    targetLink.classList.add('tab-active');
+                    // Update URL hash without causing a page reload
+                    history.pushState(null, null, `#${targetId.replace('-section', '')}`);
+                }
+            };
+
+            // Event listener for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+                    showSection(targetId);
+                });
+            });
+
+            // Handle initial load based on URL hash
+            const initialHash = window.location.hash.substring(1);
+            let target = 'home-section';
+
+            if (initialHash) {
+                // Check if the hash corresponds to a valid section
+                const sectionId = `${initialHash}-section`;
+                const foundSection = document.getElementById(sectionId);
+                if (foundSection) {
+                    target = sectionId;
+                }
+            }
+
+            // Default to 'home-section'
+            showSection(target);
+
+            // Allow back/forward navigation using hash changes
+            window.addEventListener('popstate', () => {
+                const popHash = window.location.hash.substring(1) || 'home';
+                showSection(`${popHash}-section`);
+            });
+        });
+    </script>
+</body>
+</html>
