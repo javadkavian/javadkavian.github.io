@@ -6,6 +6,13 @@
     <title>Javad Kavian</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configure Tailwind to use class-based dark mode (toggled by the button),
+        // instead of the OS-level prefers-color-scheme media query.
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <style>
         /* Custom styles for better aesthetics */
         /* Body styles are set up for Dark Mode toggle to work via the 'dark' class on the HTML tag */
@@ -17,6 +24,12 @@
             min-height: 100vh;
             /* Transition for smooth color change */
             transition: background-color 0.3s, color 0.3s;
+        }
+        /* When the dark class is on <html>, override body colors so the page
+           actually switches palette (instead of being stuck in dark mode). */
+        html.dark body {
+            background-color: #111827; /* gray-900 */
+            color: #f3f4f6; /* gray-100 */
         }
         /* Style for the active tab underline */
         .tab-active {
@@ -50,7 +63,7 @@
         }
     </style>
 </head>
-<body class="antialiased dark:bg-gray-900 dark:text-gray-100">
+<body class="antialiased">
 
     <!-- Header and Navigation Bar -->
     <header class="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-10 transition-colors duration-300">
@@ -71,6 +84,7 @@
                         <a href="#teaching" id="nav-teaching" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="teaching-section">Teaching</a>
                         <a href="#research" id="nav-research" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="research-section">Research</a>
                         <a href="#projects" id="nav-projects" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="projects-section">Projects</a>
+                        <a href="#presentations" id="nav-presentations" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="presentations-section">Presentations</a>
                         <a href="#contact" id="nav-contact" class="nav-link px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" data-target="contact-section">Contact</a>
                     </nav>
 
@@ -125,31 +139,73 @@
         <!-- TEACHING SECTION -->
         <section id="teaching-section" class="content-section">
             <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
-                <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">My Experience as Teaching Assistant</h2>
-                <p class="mb-6 text-gray-600 dark:text-gray-300">
-                    During my undergradute studies, I served as a teaching assistant for several undergraduate and graduate-level courses.
+                <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Teaching Experience</h2>
+                <p class="mb-8 text-gray-600 dark:text-gray-300">
+                    During my undergraduate studies, I served as a teaching assistant for several undergraduate and graduate-level courses at the University of Tehran.
                 </p>
-                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-3">Courses</h3>
-                <ul class="space-y-4 list-disc list-inside text-gray-600 dark:text-gray-300">
-                    <li class="pl-2">
-                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Deep Generative Models</span> - Description
-                    </li>
-                    <li class="pl-2">
-                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Machine Learning</span> - Description
-                    </li>
-                    <li class="pl-2">
-                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Artificial Intelligence</span> - Description
-                    </li>
-                    <li class="pl-2">
-                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Data Science</span> - Description
-                    </li>
-                    <li class="pl-2">
-                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Programming Languages and Compiler</span> - Description
-                    </li>
-                    <li class="pl-2">
-                        <span class="font-medium text-indigo-600 dark:text-indigo-300">Introduction to Computing Systems and Programming</span> - Description
-                    </li>
-                </ul>
+                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-5">Courses</h3>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Course Card -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Deep Generative Models</h4>
+                                <span class="inline-block mt-1 text-xs px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded-full">Graduate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course Card -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Machine Learning</h4>
+                                <span class="inline-block mt-1 text-xs px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded-full">Graduate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course Card -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Artificial Intelligence</h4>
+                                <span class="inline-block mt-1 text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full">Undergraduate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course Card -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Data Science</h4>
+                                <span class="inline-block mt-1 text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full">Undergraduate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course Card -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Programming Languages and Compiler</h4>
+                                <span class="inline-block mt-1 text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full">Undergraduate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course Card -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:border-indigo-500 dark:hover:border-indigo-400 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Introduction to Computing Systems and Programming</h4>
+                                <span class="inline-block mt-1 text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full">Undergraduate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -157,23 +213,74 @@
         <section id="research-section" class="content-section">
             <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
                 <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Research Interests & Publications</h2>
-                <p class="mb-6 text-gray-600 dark:text-gray-300">
-                    My current research focuses on scene understanding. I am particularly looking for methods which can entirely understand intricate compositional patterns within an image.
+
+                <!-- Highlight box: clearly states computer vision focus -->
+                <div class="mb-8 p-6 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-700 dark:to-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600">
+                    <p class="text-gray-700 dark:text-gray-200 leading-relaxed">
+                        My research interests are specifically focused on
+                        <strong class="text-indigo-700 dark:text-indigo-300">computer vision</strong>.
+                        In particular, I am interested in scene understanding and compositional visual
+                        reasoning — methods that can entirely understand intricate compositional
+                        patterns within an image.
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-5">Research Experience</h3>
+                <div class="space-y-4 mb-8">
+                    <!-- Research Experience 1: Sharif University — Logical Anomaly Detection -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:shadow-md transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Logical Anomaly Detection</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        Sharif University of Technology &mdash; RIML Lab
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="self-start sm:self-center text-xs px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded-full whitespace-nowrap">Researcher</span>
+                        </div>
+                    </div>
+                    <!-- Research Experience 2: University of Tehran — Scene Graph Generation -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:shadow-md transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Scene Graph Generation</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        University of Tehran
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="self-start sm:self-center text-xs px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded-full whitespace-nowrap">Researcher</span>
+                        </div>
+                    </div>
+                    <!-- Research Experience 3: University of Tehran — HCI -->
+                    <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:shadow-md transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-6 h-6 mt-0.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-indigo-600 dark:text-indigo-300">Human-Computer Interaction (HCI)</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1 flex items-center">
+                                        <svg class="w-4 h-4 mr-1 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        University of Tehran
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="self-start sm:self-center text-xs px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded-full whitespace-nowrap">Researcher</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-3">Publications</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    I currently have no published papers in peer-reviewed journals or conferences, but one of my works is under review at ICLR 2026.
                 </p>
-                <h3 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-3">Selected Publications</h3>
-                I currently have no published papers in peer-reviewed journals or conferences, but one of my works is under review at ICLR 2026.
-                <!-- <div class="space-y-4">
-                    <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                        <p class="font-medium text-indigo-600 dark:text-indigo-300">Graph-Based Neural Networks for Protein Interaction Prediction</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Journal of Bioinformatics, 2024. Vol. 15, No. 2, pp. 112-125.</p>
-                        <a href="#" class="text-xs text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100">DOI Link</a>
-                    </div>
-                    <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                        <p class="font-medium text-indigo-600 dark:text-indigo-300">Scalable Clustering of Large Transcriptome Datasets via Manifold Learning</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Nature Methods, 2023. Vol. 20, Issue 10, pp. 1450-1460.</p>
-                        <a href="#" class="text-xs text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100">DOI Link</a>
-                    </div>
-                </div> -->
             </div>
         </section>
 
@@ -201,6 +308,93 @@
                         <a href="https://github.com/javadkavian/English2Persian-translation" class="inline-flex items-center text-blue-500 dark:text-blue-300 hover:text-blue-400 dark:hover:text-blue-100 transition">
                             View on GitHub &rarr;
                         </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRESENTATIONS SECTION -->
+        <section id="presentations-section" class="content-section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl transition-colors duration-300">
+                <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Presentations</h2>
+                <p class="mb-8 text-gray-600 dark:text-gray-300 leading-relaxed">
+                    In some research journal clubs, I presented papers on recent advances in
+                    <strong class="text-indigo-700 dark:text-indigo-300">computer vision</strong>
+                    and machine learning. You can find my presentation slides below, stored under
+                    <code class="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 rounded text-sm text-indigo-700 dark:text-indigo-300">./assets/presentations/</code>
+                    and available for download.
+                </p>
+
+                <div class="space-y-5">
+                    <!-- Presentation 1: EGTR -->
+                    <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:shadow-lg transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded">EGTR</span>
+                                    <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300">
+                                        Extracting Graph from Transformer for Scene Graph Generation
+                                    </h3>
+                                </div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">First Author: Jinbae Im &middot; Im et al.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                    A lightweight, one-stage scene graph generation model that efficiently
+                                    extracts relational data by leveraging multi-head self-attention
+                                    mechanisms already learned within a DETR-based object detector.
+                                </p>
+                            </div>
+                            <a href="./assets/presentations/EGTR.pdf" download class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-medium rounded-lg shadow transition-colors duration-300 whitespace-nowrap">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Presentation 2: Grounding DINO -->
+                    <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:shadow-lg transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded">GDINO</span>
+                                    <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300">
+                                        Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection
+                                    </h3>
+                                </div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">First Author: Shilong Liu &middot; Liu et al.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                    An open-set object detector that bridges vision and language by
+                                    integrating a transformer-based detector (DINO) with grounded
+                                    pre-training, enabling the model to detect arbitrary objects based
+                                    on text prompts.
+                                </p>
+                            </div>
+                            <a href="./assets/presentations/GDINO.pdf" download class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-medium rounded-lg shadow transition-colors duration-300 whitespace-nowrap">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Presentation 3: HRT -->
+                    <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg border border-indigo-200 dark:border-indigo-600 hover:shadow-lg transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 rounded">HRT</span>
+                                    <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300">
+                                        Hybrid Routing Transformer for Zero-Shot Learning
+                                    </h3>
+                                </div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">First Author: De Cheng &middot; Cheng et al.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                    A transformer-based model for zero-shot learning that incorporates a
+                                    dynamic routing mechanism and active attention to effectively bridge
+                                    the gap between visual features and semantic attributes.
+                                </p>
+                            </div>
+                            <a href="./assets/presentations/HRT.pdf" download class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-medium rounded-lg shadow transition-colors duration-300 whitespace-nowrap">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                Download PDF
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -243,7 +437,7 @@
                 <svg class="w-6 h-6 mr-3 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M21.5 2.5L2.5 10.5c-.9.4-.9 1.6 0 2l4.8 1.7 2 6.3c.3.9 1.5 1.1 2.1.3l3-3 4.7 3.4c.8.6 2 .1 2.2-.9l3-14c.2-1-0.8-1.8-1.8-1.4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                 </svg>
-                Telegram: <a href="https://t.me/javadkavian" class="ml-2 font-medium hover:text-blue-500 dark:hover:text-blue-400">@javadkavian</a>
+                Telegram: <a href="https://t.me/javadmusiala" class="ml-2 font-medium hover:text-blue-500 dark:hover:text-blue-400">@javadmusiala</a>
             </p>
         </div>
     </div>
